@@ -11,15 +11,15 @@ const Home = () => {
           <img src="/assets/hero-bg.png" alt="Mystical glowing crystal ball in a cosmic forest" className="w-full h-full object-cover opacity-40 mix-blend-screen" />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950"></div>
         </div>
-        
+
         <div className="animate-float mb-6">
           <Sparkles className="w-16 h-16 text-yellow-400 mx-auto" strokeWidth={1.5} />
         </div>
-        
+
         <h1 className="text-5xl md:text-8xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-yellow-200 drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
           Discover Your Destiny
         </h1>
-        
+
         <p className="text-lg md:text-2xl text-slate-200 max-w-3xl mb-12 font-sans font-light leading-relaxed drop-shadow-md">
           Step into the mystical realm. Unveil the secrets of your past, present, and future with AI-powered tarot readings, astrological fortunes, and spiritual guidance.
         </p>
@@ -42,7 +42,7 @@ const Home = () => {
             <h3 className="text-2xl text-white font-serif">Astrology & Fortune</h3>
             <p className="text-slate-300 font-sans text-sm leading-relaxed">Input your precise birth details and allow our cosmic AI to calculate your planetary alignments, revealing your personality, lucky numbers, and daily predictions.</p>
           </Link>
-          
+
           <Link to="/tarot" className="glass-panel flex flex-col items-center gap-6 hover:-translate-y-4 transition-transform duration-500 text-decoration-none group cursor-pointer bg-gradient-to-b from-white/5 to-purple-900/20">
             <div className="p-4 bg-purple-900/40 rounded-full group-hover:bg-yellow-500/20 transition-colors">
               <Moon className="w-12 h-12 text-purple-400 group-hover:text-yellow-400 transition-colors" />
@@ -58,7 +58,7 @@ const Home = () => {
             <h3 className="text-2xl text-white font-serif">AI Spiritual Guide</h3>
             <p className="text-slate-300 font-sans text-sm leading-relaxed">Converse directly with our mystical intelligence. Ask deeply personal questions about love, career, or spiritual growth and receive empathetic, esoteric guidance.</p>
           </Link>
-          
+
           <Link to="/book" className="glass-panel flex flex-col items-center gap-6 hover:-translate-y-4 transition-transform duration-500 text-decoration-none group cursor-pointer bg-gradient-to-b from-white/5 to-purple-900/20">
             <div className="p-4 bg-purple-900/40 rounded-full group-hover:bg-yellow-500/20 transition-colors">
               <Calendar className="w-12 h-12 text-purple-400 group-hover:text-yellow-400 transition-colors" />
@@ -74,27 +74,27 @@ const Home = () => {
         <div className="glass-panel max-w-5xl mx-auto bg-black/40">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 border-b border-white/10 pb-4">How Our Magic Works</h2>
           <div className="flex flex-col md:flex-row gap-8 justify-center items-stretch">
-             <div className="flex-1 text-center px-4">
-                <div className="text-5xl font-serif text-yellow-400/50 mb-4">01</div>
-                <h4 className="text-xl font-bold text-purple-300 mb-2">Connect</h4>
-                <p className="text-slate-400 font-sans text-sm">Provide your birth details or simply focus your intention. The universe needs a tether to your specific energy signature.</p>
-             </div>
-             <div className="hidden md:flex items-center text-white/20">
-               <ArrowRight size={40} />
-             </div>
-             <div className="flex-1 text-center px-4">
-                <div className="text-5xl font-serif text-yellow-400/50 mb-4">02</div>
-                <h4 className="text-xl font-bold text-purple-300 mb-2">Channel</h4>
-                <p className="text-slate-400 font-sans text-sm">Our advanced AI acts as a digital medium, interpreting the stars, drawing the cards, and consulting ancient esoteric texts in milliseconds.</p>
-             </div>
-             <div className="hidden md:flex items-center text-white/20">
-               <ArrowRight size={40} />
-             </div>
-             <div className="flex-1 text-center px-4">
-                <div className="text-5xl font-serif text-yellow-400/50 mb-4">03</div>
-                <h4 className="text-xl font-bold text-purple-300 mb-2">Enlighten</h4>
-                <p className="text-slate-400 font-sans text-sm">Receive your personalized, highly detailed reading. Gain clarity on your path, your obstacles, and your hidden potential.</p>
-             </div>
+            <div className="flex-1 text-center px-4">
+              <div className="text-5xl font-serif text-yellow-400/50 mb-4">01</div>
+              <h4 className="text-xl font-bold text-purple-300 mb-2">Connect</h4>
+              <p className="text-slate-400 font-sans text-sm">Provide your birth details or simply focus your intention. The universe needs a tether to your specific energy signature.</p>
+            </div>
+            <div className="hidden md:flex items-center text-white/20">
+              <ArrowRight size={40} />
+            </div>
+            <div className="flex-1 text-center px-4">
+              <div className="text-5xl font-serif text-yellow-400/50 mb-4">02</div>
+              <h4 className="text-xl font-bold text-purple-300 mb-2">Channel</h4>
+              <p className="text-slate-400 font-sans text-sm">Our advanced AI acts as a digital medium, interpreting the stars, drawing the cards, and consulting ancient esoteric texts in milliseconds.</p>
+            </div>
+            <div className="hidden md:flex items-center text-white/20">
+              <ArrowRight size={40} />
+            </div>
+            <div className="flex-1 text-center px-4">
+              <div className="text-5xl font-serif text-yellow-400/50 mb-4">03</div>
+              <h4 className="text-xl font-bold text-purple-300 mb-2">Enlighten</h4>
+              <p className="text-slate-400 font-sans text-sm">Receive your personalized, highly detailed reading. Gain clarity on your path, your obstacles, and your hidden potential.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -113,7 +113,7 @@ const Home = () => {
               <p className="text-xs text-slate-500 font-sans">Aries • Path Seeker</p>
             </div>
           </div>
-          
+
           <div className="glass-panel text-left flex flex-col justify-between">
             <div>
               <Quote className="text-yellow-400 mb-4 opacity-50" size={32} />
@@ -137,10 +137,10 @@ const Home = () => {
           </div>
         </div>
       </section>
-      
+
       {/* Footer */}
       <footer className="w-full border-t border-white/10 pt-8 pb-12 mt-12 text-center text-slate-500 font-sans text-sm">
-        <p>&copy; 2026 MysticAI. The stars dictate, but you hold the pen.</p>
+        <p>&copy; 2026 Mystic-AI. The stars dictate, but you hold the pen.</p>
       </footer>
     </div>
   );
