@@ -24,7 +24,7 @@ const Navbar = () => {
         <nav className="flex justify-between items-center py-4 px-8 m-4 rounded-full sticky top-4 z-50 glass-panel !p-4">
             <div className="text-2xl font-bold text-yellow-400 flex items-center gap-2" style={{ fontFamily: 'Cinzel, serif' }}>
                 <Link to="/" className="flex items-center gap-2">
-                    <span>✨</span> Mystic-AI
+                    <span>🔮</span> Mystic-AI
                 </Link>
             </div>
             {/* Desktop Navigation */}
@@ -50,7 +50,7 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Menu Button */}
-            <button 
+            <button
                 className="md:hidden text-slate-200 hover:text-white"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
@@ -59,8 +59,8 @@ const Navbar = () => {
 
             {/* Mobile Navigation Overlay (Click outside to close) */}
             {isMobileMenuOpen && (
-                <div 
-                    className="fixed inset-0 z-40" 
+                <div
+                    className="fixed inset-0 z-40"
                     onClick={() => setIsMobileMenuOpen(false)}
                 />
             )}
@@ -76,7 +76,7 @@ const Navbar = () => {
                 <Link to="/tarot" onClick={() => setIsMobileMenuOpen(false)} className={isActive('/tarot')}>Tarot</Link>
                 <Link to="/chat" onClick={() => setIsMobileMenuOpen(false)} className={isActive('/chat')}>AI Guide</Link>
                 <Link to="/book" onClick={() => setIsMobileMenuOpen(false)} className="btn-mystic text-center py-2 text-sm w-full">Book Session</Link>
-                
+
                 <div className="border-t border-white/10 pt-4 mt-2 flex flex-col gap-4">
                     {isAuthenticated ? (
                         <>

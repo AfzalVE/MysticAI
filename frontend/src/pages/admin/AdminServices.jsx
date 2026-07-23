@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Edit3 } from 'lucide-react';
+import { WandSparkles, Edit3 } from 'lucide-react';
 
 const AdminServices = () => {
   const services = [
@@ -12,9 +12,9 @@ const AdminServices = () => {
   return (
     <div className="p-6 md:p-10 animate-fadeIn">
       <h1 className="text-3xl font-serif text-white mb-8 border-b border-white/10 pb-4 flex items-center gap-3">
-        <Sparkles className="text-purple-400" size={32} /> Services Management
+        <WandSparkles className="text-purple-400" size={32} /> Services Management
       </h1>
-      
+
       <div className="bg-black/40 rounded-xl border border-purple-500/30 overflow-x-auto">
         <table className="w-full text-left text-sm text-slate-300 font-sans">
           <thead className="bg-purple-900/30 text-purple-300 uppercase text-xs font-bold border-b border-purple-500/30">

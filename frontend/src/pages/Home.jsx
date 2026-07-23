@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, Moon, Star, Calendar, ArrowRight, Quote } from 'lucide-react';
+import { WandSparkles, Moon, Star, Calendar, ArrowRight, Quote } from 'lucide-react';
 
 const Home = () => {
   return (
@@ -13,7 +13,7 @@ const Home = () => {
         </div>
 
         <div className="animate-float mb-6">
-          <Sparkles className="w-16 h-16 text-yellow-400 mx-auto" strokeWidth={1.5} />
+          <WandSparkles className="w-16 h-16 text-yellow-400 mx-auto" strokeWidth={1.5} />
         </div>
 
         <h1 className="text-5xl md:text-8xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-yellow-200 drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
@@ -53,7 +53,7 @@ const Home = () => {
 
           <Link to="/chat" className="glass-panel flex flex-col items-center gap-6 hover:-translate-y-4 transition-transform duration-500 text-decoration-none group cursor-pointer bg-gradient-to-b from-white/5 to-purple-900/20">
             <div className="p-4 bg-purple-900/40 rounded-full group-hover:bg-yellow-500/20 transition-colors">
-              <Sparkles className="w-12 h-12 text-purple-400 group-hover:text-yellow-400 transition-colors" />
+              <WandSparkles className="w-12 h-12 text-purple-400 group-hover:text-yellow-400 transition-colors" />
             </div>
             <h3 className="text-2xl text-white font-serif">AI Spiritual Guide</h3>
             <p className="text-slate-300 font-sans text-sm leading-relaxed">Converse directly with our mystical intelligence. Ask deeply personal questions about love, career, or spiritual growth and receive empathetic, esoteric guidance.</p>
