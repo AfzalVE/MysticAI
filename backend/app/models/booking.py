@@ -6,3 +6,4 @@ class BookingCreate(BaseModel):
     date: str
     time: str
     details: Dict[str, Any]
+    status: str = "pending"

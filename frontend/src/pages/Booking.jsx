@@ -39,10 +39,9 @@ const Booking = () => {
     await new Promise(resolve => setTimeout(resolve, 2000));
     
     try {
-      if (isAuthenticated) {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/save_booking`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/booking/create-checkout`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+          headers: { 'Content-Type': 'application/json', ...(isAuthenticated && { 'Authorization': `Bearer ${token}` }) },
           body: JSON.stringify({
             consultation_type: formData.consultation_type,
             date: formData.date,
@@ -54,14 +53,12 @@ const Booking = () => {
             }
           })
         });
-        if (res.ok) {
-          const data = await res.json();
-          setBookingId(data.id);
-        }
-      } else {
-        setBookingId('MOCK-' + Math.floor(Math.random() * 100000));
-      }
-      setStep(3);
+        
+        if (!res.ok) throw new Error('Failed to create checkout session');
+        const data = await res.json();
+        
+        // Redirect to our "third-party" mock checkout gateway
+        window.location.href = `/checkout/${data.booking_id}`;
     } catch (err) {
       console.error(err);
       alert('Failed to process booking');
@@ -202,26 +199,7 @@ const Booking = () => {
             </form>
           )}
 
-          {step === 3 && (
-             <div className="text-center animate-fadeIn py-8">
-                <CheckCircle2 className="w-24 h-24 text-green-400 mx-auto mb-6 drop-shadow-[0_0_15px_rgba(74,222,128,0.5)]" />
-                <h2 className="text-4xl font-serif text-white mb-4">Session Confirmed!</h2>
-                <p className="text-slate-300 font-sans text-lg mb-8 max-w-lg mx-auto">
-                  Your intention has been set and the appointment is secured in the cosmos. We have sent a calendar invitation to <span className="font-bold text-purple-300">{formData.email}</span>.
-                </p>
-                <div className="bg-black/30 inline-block p-4 rounded-xl border border-white/10 mb-8">
-                   <p className="text-sm text-slate-400 uppercase tracking-widest mb-1">Booking Reference</p>
-                   <p className="font-mono text-xl text-yellow-400">{bookingId}</p>
-                </div>
-                <div>
-                   {isAuthenticated ? (
-                     <button onClick={() => navigate('/dashboard')} className="btn-mystic px-8 py-3">View My Bookings</button>
-                   ) : (
-                     <button onClick={() => navigate('/')} className="btn-mystic px-8 py-3">Return Home</button>
-                   )}
-                </div>
-             </div>
-          )}
+          {/* Step 3 was removed since Success is handled on a dedicated page after checkout */}
         </div>
       </div>
     </div>

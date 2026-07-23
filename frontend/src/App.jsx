@@ -6,6 +6,8 @@ import FortuneTelling from './pages/FortuneTelling';
 import TarotReading from './pages/TarotReading';
 import AIChat from './pages/AIChat';
 import Booking from './pages/Booking';
+import MockCheckout from './pages/MockCheckout';
+import Success from './pages/Success';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
@@ -43,6 +45,8 @@ function App() {
                 <Route path="/tarot" element={<TarotReading />} />
                 <Route path="/chat" element={<AIChat />} />
                 <Route path="/book" element={<Booking />} />
+                <Route path="/checkout/:sessionId" element={<MockCheckout />} />
+                <Route path="/success/:sessionId" element={<Success />} />
                 <Route path="/dashboard" element={<Dashboard />} />
               </Route>
 

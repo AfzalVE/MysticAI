@@ -68,7 +68,10 @@ const AdminLogin = () => {
             <Lock size={32} className="text-purple-400" />
           </div>
           <h2 className="text-3xl font-serif text-white mb-2">Admin Portal</h2>
-          <p className="text-slate-400 text-sm">Secure access for mystical administrators</p>
+          <p className="text-slate-400 text-sm mb-2">Secure access for mystical administrators</p>
+          <div className="inline-block bg-white/5 border border-white/10 rounded px-3 py-2 text-xs text-slate-300 font-mono">
+            Demo: admin@mysticai.com / admin123
+          </div>
         </div>
 
         {error && (
