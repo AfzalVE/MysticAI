@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Outfit:wght@300;400;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Outfit', sans-serif;
+  --font-serif: 'Cinzel', serif;
+}
+
+@layer base {
+  body {
+    @apply bg-slate-950 text-slate-100 font-sans min-h-screen overflow-x-hidden;
+    background-color: #0a0515;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-bold tracking-wide;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] rounded-2xl p-8;
+  }
+
+  .btn-mystic {
+    @apply bg-gradient-to-br from-purple-500 to-purple-800 text-white border-none py-2 px-6 rounded-full font-semibold cursor-pointer transition-all duration-300 relative overflow-hidden;
+  }
+
+  .btn-mystic:hover {
+    @apply -translate-y-0.5 shadow-[0_0_15px_rgba(199,125,255,0.6)];
+  }
+
+  .mystic-input {
+    @apply w-full py-3 px-4 bg-black/30 border border-white/10 rounded-lg text-white font-sans mb-4 transition-all duration-300;
+  }
+
+  .mystic-input:focus {
+    @apply outline-none border-purple-400 shadow-[0_0_10px_rgba(199,125,255,0.3)];
+  }
+}
+
+/* 3D Flip Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+}
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
