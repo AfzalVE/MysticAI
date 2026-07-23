@@ -3,11 +3,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.core.database import connect_to_mongo, close_mongo_connection
 
-import os
-
 app = FastAPI(title=settings.PROJECT_NAME)
 
-origins = os.getenv("FRONTEND_URL", "http://localhost:5173").split(",")
+origins = settings.FRONTEND_URL.split(",")
 
 app.add_middleware(
     CORSMiddleware,
