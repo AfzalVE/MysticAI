@@ -10,7 +10,7 @@ const AdminChatLogs = () => {
   useEffect(() => {
     const fetchChats = async () => {
       try {
-        const res = await fetch('http://127.0.0.1:8000/api/admin/chat-logs', {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/chat-logs`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (res.ok) setChats(await res.json());

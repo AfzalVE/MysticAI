@@ -30,9 +30,9 @@ const Dashboard = () => {
         const headers = { Authorization: `Bearer ${token}` };
         
         const [profileRes, readingsRes, bookingsRes] = await Promise.all([
-          fetch('http://127.0.0.1:8000/api/user/profile', { headers }),
-          fetch('http://127.0.0.1:8000/api/user/readings', { headers }),
-          fetch('http://127.0.0.1:8000/api/user/bookings', { headers })
+          fetch(`${import.meta.env.VITE_API_URL}/api/user/profile`, { headers }),
+          fetch(`${import.meta.env.VITE_API_URL}/api/user/readings`, { headers }),
+          fetch(`${import.meta.env.VITE_API_URL}/api/user/bookings`, { headers })
         ]);
 
         if (profileRes.ok) {
@@ -56,7 +56,7 @@ const Dashboard = () => {
     e.preventDefault();
     setMsg({ type: '', text: '' });
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/user/profile', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/profile`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({
@@ -82,7 +82,7 @@ const Dashboard = () => {
     e.preventDefault();
     setMsg({ type: '', text: '' });
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/user/change-password', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/change-password`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify(passwordForm)

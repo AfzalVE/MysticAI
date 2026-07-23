@@ -28,7 +28,7 @@ const AIChat = () => {
 
   const fetchSessions = async () => {
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/chat/sessions', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/chat/sessions`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.ok) {
@@ -44,7 +44,7 @@ const AIChat = () => {
     setCurrentSessionId(sessionId);
     setIsSidebarOpen(false);
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/chat/session/${sessionId}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/chat/session/${sessionId}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.ok) {
@@ -78,7 +78,7 @@ const AIChat = () => {
       const payload = { messages: [...messages, userMsg] };
       if (currentSessionId) payload.session_id = currentSessionId;
 
-      const res = await fetch('http://127.0.0.1:8000/api/chat/', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/chat/`, {
         method: 'POST',
         headers: headers,
         body: JSON.stringify(payload)

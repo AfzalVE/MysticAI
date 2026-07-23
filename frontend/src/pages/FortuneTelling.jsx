@@ -13,7 +13,7 @@ const FortuneTelling = () => {
 
   useEffect(() => {
     if (isAuthenticated && token) {
-      fetch('http://127.0.0.1:8000/api/user/profile', {
+      fetch(`${import.meta.env.VITE_API_URL}/api/user/profile`, {
         headers: { 'Authorization': `Bearer ${token}` }
       })
       .then(res => res.json())
@@ -37,7 +37,7 @@ const FortuneTelling = () => {
     setError('');
     setFortune(null);
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/fortune/fortune', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/fortune/fortune`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -48,7 +48,7 @@ const FortuneTelling = () => {
       
       // Auto-save
       if (isAuthenticated && token) {
-        fetch('http://127.0.0.1:8000/api/user/save_reading', {
+        fetch(`${import.meta.env.VITE_API_URL}/api/user/save_reading`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
           body: JSON.stringify({ type: 'fortune', data: data })

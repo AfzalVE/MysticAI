@@ -10,7 +10,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await fetch('http://127.0.0.1:8000/api/admin/stats', {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/stats`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (res.ok) setStats(await res.json());

@@ -10,7 +10,7 @@ const AdminUsers = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch('http://127.0.0.1:8000/api/admin/users', {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/users`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (res.ok) setUsers(await res.json());

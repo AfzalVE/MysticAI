@@ -10,7 +10,7 @@ const AdminReadings = () => {
   useEffect(() => {
     const fetchReadings = async () => {
       try {
-        const res = await fetch('http://127.0.0.1:8000/api/admin/readings', {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/readings`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (res.ok) setReadings(await res.json());

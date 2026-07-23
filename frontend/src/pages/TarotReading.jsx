@@ -18,7 +18,7 @@ const TarotReading = () => {
     setReading(null);
     setFlippedCards([]);
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/tarot/draw', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/tarot/draw`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ spread_type: spreadType })
@@ -29,7 +29,7 @@ const TarotReading = () => {
       
       // Auto-save
       if (isAuthenticated && token) {
-        fetch('http://127.0.0.1:8000/api/user/save_reading', {
+        fetch(`${import.meta.env.VITE_API_URL}/api/user/save_reading`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
           body: JSON.stringify({ type: 'tarot', data: data })

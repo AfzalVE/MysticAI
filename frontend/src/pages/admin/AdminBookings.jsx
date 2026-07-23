@@ -10,7 +10,7 @@ const AdminBookings = () => {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const res = await fetch('http://127.0.0.1:8000/api/admin/bookings', {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/bookings`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (res.ok) setBookings(await res.json());
