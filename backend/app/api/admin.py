@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Body
 from app.core.database import get_database
 from app.api.auth import get_current_user
 from typing import List, Dict, Any
@@ -90,3 +90,26 @@ async def get_all_bookings(admin_user: dict = Depends(require_admin)):
         user_id = str(b.get("user_id"))
         b["user_name"] = user_map.get(user_id, "Unknown User")
     return bookings
+
+@router.put("/bookings/{booking_id}/status")
+async def update_booking_status(booking_id: str, status_update: str = Body(..., embed=True), admin_user: dict = Depends(require_admin)):
+    db = get_database()
+    
+    # booking_id could be a UUID from mock checkout, or an ObjectId. We'll try finding it directly first.
+    result = await db.bookings.update_one(
+        {"_id": booking_id},
+        {"$set": {"status": status_update}}
+    )
+    
+    # If not found by exact string, try ObjectId if it's a valid 24-char hex
+    if result.modified_count == 0 and len(booking_id) == 24:
+        from bson import ObjectId
+        result = await db.bookings.update_one(
+            {"_id": ObjectId(booking_id)},
+            {"$set": {"status": status_update}}
+        )
+
+    if result.modified_count == 0:
+        raise HTTPException(status_code=404, detail="Booking not found or status is already the same")
+        
+    return {"status": "success", "message": "Booking status updated to " + status_update}

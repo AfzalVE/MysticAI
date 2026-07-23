@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthStore } from '../store/authStore';
 import { useNavigate } from 'react-router-dom';
-import { BookOpen, Calendar, User, Clock, Star, Edit3, X, Check, Key, Sparkles } from 'lucide-react';
+import { BookOpen, Calendar, User, Clock, Star, Edit3, X, Check, Key, Sparkles, Loader2 } from 'lucide-react';
 
 const Dashboard = () => {
   const { token, isAuthenticated } = useAuthStore();
@@ -10,6 +10,8 @@ const Dashboard = () => {
   const [readings, setReadings] = useState([]);
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isSavingProfile, setIsSavingProfile] = useState(false);
+  const [isUpdatingPassword, setIsUpdatingPassword] = useState(false);
   
   // Edit states
   const [isEditing, setIsEditing] = useState(false);
@@ -18,6 +20,15 @@ const Dashboard = () => {
   const [passwordForm, setPasswordForm] = useState({ old_password: '', new_password: '' });
   const [msg, setMsg] = useState({ type: '', text: '' });
   const [selectedReading, setSelectedReading] = useState(null);
+
+  useEffect(() => {
+    if (msg.text) {
+      const timer = setTimeout(() => {
+        setMsg({ type: '', text: '' });
+      }, 3500);
+      return () => clearTimeout(timer);
+    }
+  }, [msg.text]);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -55,6 +66,7 @@ const Dashboard = () => {
   const handleProfileUpdate = async (e) => {
     e.preventDefault();
     setMsg({ type: '', text: '' });
+    setIsSavingProfile(true);
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/profile`, {
         method: 'PUT',
@@ -75,12 +87,15 @@ const Dashboard = () => {
       }
     } catch (err) {
       setMsg({ type: 'error', text: 'An error occurred.' });
+    } finally {
+      setIsSavingProfile(false);
     }
   };
 
   const handlePasswordChange = async (e) => {
     e.preventDefault();
     setMsg({ type: '', text: '' });
+    setIsUpdatingPassword(true);
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/user/change-password`, {
         method: 'PUT',
@@ -96,6 +111,8 @@ const Dashboard = () => {
       }
     } catch (err) {
       setMsg({ type: 'error', text: 'An error occurred.' });
+    } finally {
+      setIsUpdatingPassword(false);
     }
   };
 
@@ -110,12 +127,17 @@ const Dashboard = () => {
             <h1 className="text-4xl font-serif text-yellow-400 mb-2">Welcome, {profile?.name || 'Seeker'}</h1>
             <p className="text-slate-300 font-sans text-lg">Your cosmic journey continues here.</p>
           </div>
-          {msg.text && (
-            <div className={`px-4 py-2 rounded-lg text-sm font-bold ${msg.type === 'success' ? 'bg-green-900/50 text-green-300' : 'bg-red-900/50 text-red-300'}`}>
-              {msg.text}
-            </div>
-          )}
         </header>
+
+        {/* Floating Toast Notification */}
+        {msg.text && (
+          <div className={`fixed bottom-8 right-8 z-50 px-6 py-4 rounded-xl shadow-2xl border flex items-center gap-3 animate-fadeIn transition-all duration-300
+            ${msg.type === 'success' ? 'bg-green-900/90 border-green-500/50 text-green-100 shadow-[0_0_20px_rgba(34,197,94,0.3)]' : 'bg-red-900/90 border-red-500/50 text-red-100 shadow-[0_0_20px_rgba(239,68,68,0.3)]'}
+          `}>
+            {msg.type === 'success' ? <Check size={20} className="text-green-400" /> : <X size={20} className="text-red-400" />}
+            <span className="font-bold">{msg.text}</span>
+          </div>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
@@ -151,8 +173,10 @@ const Dashboard = () => {
                       <input className="mystic-input w-full p-2" value={editForm.birth_place || ''} onChange={e => setEditForm({...editForm, birth_place: e.target.value})} />
                     </div>
                     <div className="flex gap-2 mt-4">
-                      <button type="submit" className="bg-purple-600 hover:bg-purple-500 text-white flex-1 py-2 rounded flex items-center justify-center gap-1"><Check size={16}/> Save</button>
-                      <button type="button" onClick={() => setIsEditing(false)} className="border border-slate-500 text-slate-300 hover:bg-slate-800 flex-1 py-2 rounded flex items-center justify-center gap-1"><X size={16}/> Cancel</button>
+                      <button disabled={isSavingProfile} type="submit" className="bg-purple-600 hover:bg-purple-500 text-white flex-1 py-2 rounded flex items-center justify-center gap-1 disabled:opacity-70">
+                        {isSavingProfile ? <Loader2 size={16} className="animate-spin" /> : <Check size={16}/>} Save
+                      </button>
+                      <button disabled={isSavingProfile} type="button" onClick={() => setIsEditing(false)} className="border border-slate-500 text-slate-300 hover:bg-slate-800 flex-1 py-2 rounded flex items-center justify-center gap-1 disabled:opacity-70"><X size={16}/> Cancel</button>
                     </div>
                   </form>
                 ) : isChangingPassword ? (
@@ -166,8 +190,10 @@ const Dashboard = () => {
                       <input type="password" required className="mystic-input w-full p-2" value={passwordForm.new_password} onChange={e => setPasswordForm({...passwordForm, new_password: e.target.value})} />
                     </div>
                     <div className="flex gap-2 mt-4">
-                      <button type="submit" className="bg-red-600 hover:bg-red-500 text-white flex-1 py-2 rounded flex items-center justify-center gap-1"><Check size={16}/> Update</button>
-                      <button type="button" onClick={() => setIsChangingPassword(false)} className="border border-slate-500 text-slate-300 hover:bg-slate-800 flex-1 py-2 rounded flex items-center justify-center gap-1"><X size={16}/> Cancel</button>
+                      <button disabled={isUpdatingPassword} type="submit" className="bg-red-600 hover:bg-red-500 text-white flex-1 py-2 rounded flex items-center justify-center gap-1 disabled:opacity-70">
+                        {isUpdatingPassword ? <Loader2 size={16} className="animate-spin" /> : <Check size={16}/>} Update
+                      </button>
+                      <button disabled={isUpdatingPassword} type="button" onClick={() => setIsChangingPassword(false)} className="border border-slate-500 text-slate-300 hover:bg-slate-800 flex-1 py-2 rounded flex items-center justify-center gap-1 disabled:opacity-70"><X size={16}/> Cancel</button>
                     </div>
                   </form>
                 ) : (
@@ -244,7 +270,16 @@ const Dashboard = () => {
                           <p className="font-bold text-yellow-400 font-serif">{b.consultation_type} Session</p>
                           <p className="text-sm text-slate-300 font-sans">{b.date} at {b.time}</p>
                         </div>
-                        <span className="px-3 py-1 bg-green-500/20 text-green-300 border border-green-500/30 rounded-full text-xs font-bold uppercase">Confirmed</span>
+                        {b.status === 'pending' ? (
+                          <span className="px-3 py-1 bg-yellow-500/20 text-yellow-300 border border-yellow-500/30 rounded-full text-xs font-bold uppercase">Pending</span>
+                        ) : b.status === 'paid' ? (
+                          <div className="flex flex-col items-end gap-1">
+                            <span className="px-3 py-1 bg-blue-500/20 text-blue-300 border border-blue-500/30 rounded-full text-xs font-bold uppercase">Paid</span>
+                            <span className="text-[10px] text-slate-400 max-w-[150px] text-right leading-tight">Awaiting confirmation from MysticAI</span>
+                          </div>
+                        ) : (
+                          <span className="px-3 py-1 bg-green-500/20 text-green-300 border border-green-500/30 rounded-full text-xs font-bold uppercase">Confirmed</span>
+                        )}
                      </div>
                    ))}
                  </div>

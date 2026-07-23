@@ -1,13 +1,14 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 from app.schemas.all_schemas import BookingRequest, BookingResponse
 from app.models.booking import BookingCreate
 from app.core.database import get_database
+from app.core.security import decode_access_token
 import uuid
 
 router = APIRouter()
 
 @router.post("/create-checkout", response_model=BookingResponse)
-async def create_checkout(req: BookingCreate):
+async def create_checkout(req: BookingCreate, request: Request):
     try:
         db = get_database()
         booking_collection = db["bookings"]
@@ -16,6 +17,16 @@ async def create_checkout(req: BookingCreate):
         booking_doc = req.dict()
         booking_doc["_id"] = session_id
         booking_doc["status"] = "pending"
+        
+        auth_header = request.headers.get("Authorization")
+        if auth_header and auth_header.startswith("Bearer "):
+            token = auth_header.split(" ")[1]
+            try:
+                user_id = decode_access_token(token)
+                if user_id:
+                    booking_doc["user_id"] = user_id
+            except:
+                pass
         
         await booking_collection.insert_one(booking_doc)
         

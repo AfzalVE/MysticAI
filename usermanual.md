@@ -50,7 +50,8 @@ If you prefer a human touch, you can book a live consultation.
 - Choose your consultation type (e.g., Live Tarot, Natal Chart Reading).
 - Select a Date and Time.
 - Provide any specific questions or areas of focus in the details box.
-- Your booking will be saved and visible on your Dashboard.
+- **Payment Integration**: Upon clicking "Continue to Payment", you will be securely redirected to our payment gateway.
+- **Booking Status**: Your bookings will appear on your Dashboard. Unpaid bookings will display a yellow **Pending** status. Once paid, they will show a blue **Paid** status while awaiting final verification from MysticAI. Once fully verified by an administrator, the status will turn green and say **Confirmed**.
 
 ---
 
@@ -65,7 +66,8 @@ MysticAI features a secure administration portal for managing the platform.
 ### Admin Features
 - **Dashboard Overview**: View high-level statistics including total users, total readings, chat sessions, and bookings.
 - **Users**: View a complete list of registered users on the platform.
-- **Readings**: Review all Fortune and Tarot readings generated on the platform, associated with the names of the users who requested them.
-- **AI Chat Logs**: Monitor all AI chat sessions taking place on the platform.
-- **Bookings**: Manage and review all upcoming user consultation bookings.
-- **Profile**: Click "Profile" in the sidebar to seamlessly jump back to your regular user dashboard.
+- **Readings (Fortune & Tarot)**: Browse generated readings categorized by type. Click on any reading row to open a **Detailed Insights Popup**, showing the exact fortune, astrological data, or tarot spread the user received.
+- **AI Chat Logs**: Monitor all AI chat sessions taking place on the platform. Click on a session to open a **Message Transcript Modal** to read the full dialogue.
+- **Bookings**: Review all upcoming user consultation bookings. Click a booking row to view a detailed popup containing client notes, schedules, and account links.
+- **Payments Management**: Track the financial lifecycle of all bookings. Admins can manually update a booking's status (e.g., upgrading a **Paid** booking to **Confirmed**).
+- **Services Management**: A centralized hub to view and manage available mystical services, pricing, and active statuses.

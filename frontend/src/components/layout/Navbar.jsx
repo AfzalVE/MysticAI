@@ -8,6 +8,8 @@ const Navbar = () => {
     const navigate = useNavigate();
     const { isAuthenticated, logout } = useAuthStore();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+    const isAdmin = localStorage.getItem('isAdmin') === 'true';
+    const dashboardPath = isAdmin ? '/admin' : '/dashboard';
 
     const isActive = (path) => {
         return location.pathname === path ? 'text-purple-400' : 'text-slate-200 hover:text-purple-300 transition-colors';
@@ -35,7 +37,7 @@ const Navbar = () => {
 
                 {isAuthenticated ? (
                     <div className="flex items-center gap-4 border-l border-white/20 pl-4">
-                        <Link to="/dashboard" className="text-yellow-400 hover:text-white transition-colors">Dashboard</Link>
+                        <Link to={dashboardPath} className="text-yellow-400 hover:text-white transition-colors">Dashboard</Link>
                         <button onClick={handleLogout} className="text-slate-300 hover:text-red-400 text-sm">Logout</button>
                     </div>
                 ) : (
@@ -78,7 +80,7 @@ const Navbar = () => {
                 <div className="border-t border-white/10 pt-4 mt-2 flex flex-col gap-4">
                     {isAuthenticated ? (
                         <>
-                            <Link to="/dashboard" onClick={() => setIsMobileMenuOpen(false)} className="text-yellow-400 hover:text-white">Dashboard</Link>
+                            <Link to={dashboardPath} onClick={() => setIsMobileMenuOpen(false)} className="text-yellow-400 hover:text-white">Dashboard</Link>
                             <button onClick={() => { handleLogout(); setIsMobileMenuOpen(false); }} className="text-slate-300 hover:text-red-400 text-left">Logout</button>
                         </>
                     ) : (

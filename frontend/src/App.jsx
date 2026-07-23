@@ -23,6 +23,8 @@ import AdminUsers from './pages/admin/AdminUsers';
 import AdminReadings from './pages/admin/AdminReadings';
 import AdminChatLogs from './pages/admin/AdminChatLogs';
 import AdminBookings from './pages/admin/AdminBookings';
+import AdminPayments from './pages/admin/AdminPayments';
+import AdminServices from './pages/admin/AdminServices';
 import AdminPlaceholder from './pages/admin/AdminPlaceholder';
 
 function App() {
@@ -60,8 +62,8 @@ function App() {
                   <Route path="chat-logs" element={<AdminChatLogs />} />
                   <Route path="bookings" element={<AdminBookings />} />
                   <Route path="calendar" element={<AdminPlaceholder title="Calendar" />} />
-                  <Route path="payments" element={<AdminPlaceholder title="Payments" />} />
-                  <Route path="services" element={<AdminPlaceholder title="Services" />} />
+                  <Route path="payments" element={<AdminPayments />} />
+                  <Route path="services" element={<AdminServices />} />
                   <Route path="ai-settings" element={<AdminPlaceholder title="AI Settings" />} />
                   <Route path="content" element={<AdminPlaceholder title="Content Management" />} />
                   <Route path="notifications" element={<AdminPlaceholder title="Notifications" />} />

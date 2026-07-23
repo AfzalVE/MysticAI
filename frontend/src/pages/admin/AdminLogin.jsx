@@ -44,6 +44,7 @@ const AdminLogin = () => {
       const profileData = await profileRes.json();
       
       if (profileData.is_admin) {
+        localStorage.setItem('isAdmin', 'true');
         login(token);
         navigate('/admin');
       } else {
