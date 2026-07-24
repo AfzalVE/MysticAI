@@ -1,4 +1,4 @@
-# 🔮 OracleVerse AI
+# 🔮 Mytic-AI
 
 An AI-powered Fortune Telling, Tarot Reading, and Consultation Booking Platform built with **React (Vite)** and **FastAPI**.
 
