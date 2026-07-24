@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Moon, Loader2, Save, Check } from 'lucide-react';
 import { useAuthStore } from '../store/authStore';
+import MarkdownRenderer from '../components/MarkdownRenderer';
 
 const TarotReading = () => {
   const [spreadType, setSpreadType] = useState('1_card');
@@ -131,8 +132,8 @@ const TarotReading = () => {
             
             <div className={`glass-panel max-w-4xl mx-auto transition-all duration-1000 transform ${flippedCards.length === reading.cards.length ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'}`}>
               <h2 className="text-3xl font-bold text-yellow-400 mb-6 border-b border-white/10 pb-4 font-serif text-center">The Oracle's Interpretation</h2>
-              <div className="text-slate-200 font-sans leading-relaxed whitespace-pre-wrap text-lg px-4 md:px-8">
-                {reading.interpretation}
+              <div className="text-slate-200 font-sans text-lg px-4 md:px-8 pb-4">
+                <MarkdownRenderer content={reading.interpretation} />
               </div>
             </div>
             

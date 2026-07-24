@@ -9,6 +9,8 @@ def serialize_mongo(doc):
     if "_id" in doc:
         doc["id"] = str(doc["_id"])
         del doc["_id"]
+    if "user_id" in doc and doc["user_id"] is not None:
+        doc["user_id"] = str(doc["user_id"])
     return doc
 
 async def require_admin(current_user: dict = Depends(get_current_user)):

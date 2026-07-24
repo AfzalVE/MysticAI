@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuthStore } from '../store/authStore';
 import { useNavigate } from 'react-router-dom';
 import { BookOpen, Calendar, User, Clock, Star, Edit3, X, Check, Key, WandSparkles, Loader2 } from 'lucide-react';
+import MarkdownRenderer from '../components/MarkdownRenderer';
 
 const Dashboard = () => {
   const { token, isAuthenticated } = useAuthStore();
@@ -302,8 +303,8 @@ const Dashboard = () => {
 
               {selectedReading.type === 'fortune' ? (
                 <div className="space-y-6 text-slate-200">
-                  <div className="bg-black/40 p-5 rounded-lg border border-purple-500/20">
-                    <p className="whitespace-pre-wrap leading-relaxed">{selectedReading.data?.horoscope || "Your fortune was obscured by the cosmos."}</p>
+                  <div className="bg-black/40 p-5 rounded-lg border border-purple-500/20 font-sans text-sm">
+                    <MarkdownRenderer content={selectedReading.data?.horoscope || "Your fortune was obscured by the cosmos."} />
                   </div>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-center">
                     <div className="bg-purple-900/20 p-3 rounded border border-purple-500/30">
@@ -335,7 +336,9 @@ const Dashboard = () => {
                   </div>
                   <div className="mt-6 p-6 bg-black/40 rounded-lg border border-white/10">
                     <strong className="text-purple-300 block mb-3 text-lg font-serif">AI Interpretation</strong>
-                    <p className="whitespace-pre-wrap text-slate-200 leading-relaxed">{selectedReading.data?.interpretation}</p>
+                    <div className="text-sm text-slate-200 font-sans">
+                      <MarkdownRenderer content={selectedReading.data?.interpretation} />
+                    </div>
                   </div>
                 </div>
               ) : (

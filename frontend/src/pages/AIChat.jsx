@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Send, Loader2, User, WandSparkles, MessageSquare, Plus, Menu, X } from 'lucide-react';
 import { useAuthStore } from '../store/authStore';
+import MarkdownRenderer from '../components/MarkdownRenderer';
 
 const AIChat = () => {
   const { token, isAuthenticated } = useAuthStore();
@@ -156,8 +157,12 @@ const AIChat = () => {
                 <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 shadow-lg ${msg.role === 'user' ? 'bg-gradient-to-br from-purple-500 to-purple-700 text-white' : 'bg-gradient-to-br from-yellow-400 to-yellow-600 text-black'}`}>
                   {msg.role === 'user' ? <User size={20} /> : <WandSparkles size={20} />}
                 </div>
-                <div className={`p-4 rounded-2xl font-sans text-sm md:text-base leading-relaxed shadow-lg ${msg.role === 'user' ? 'bg-purple-900/40 border border-purple-500/30 rounded-tr-none text-purple-100' : 'bg-black/60 border border-white/10 rounded-tl-none text-slate-200'}`}>
-                  <p className="whitespace-pre-wrap">{msg.content}</p>
+                <div className={`p-4 rounded-2xl font-sans text-sm md:text-base shadow-lg ${msg.role === 'user' ? 'bg-purple-900/40 border border-purple-500/30 rounded-tr-none text-purple-100' : 'bg-black/60 border border-white/10 rounded-tl-none text-slate-200'}`}>
+                  {msg.role === 'user' ? (
+                    <p className="whitespace-pre-wrap">{msg.content}</p>
+                  ) : (
+                    <MarkdownRenderer content={msg.content} />
+                  )}
                 </div>
               </div>
             </div>

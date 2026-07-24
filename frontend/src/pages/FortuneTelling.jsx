@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { WandSparkles, Loader2, Compass, Save, Check } from 'lucide-react';
 import { useAuthStore } from '../store/authStore';
+import MarkdownRenderer from '../components/MarkdownRenderer';
 
 const FortuneTelling = () => {
   const [formData, setFormData] = useState({ name: '', dob: '', time_of_birth: '', birth_place: '' });
@@ -139,7 +140,9 @@ const FortuneTelling = () => {
               <div className="bg-white/5 p-6 md:p-8 rounded-2xl border border-white/10 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-500/10 rounded-full blur-3xl"></div>
                 <h3 className="text-2xl text-yellow-400 mb-4 font-serif font-bold border-b border-yellow-400/20 pb-2 inline-block">The Stars Proclaim</h3>
-                <p className="whitespace-pre-wrap relative z-10 leading-loose">{fortune.horoscope}</p>
+                <div className="relative z-10 font-sans text-slate-200">
+                  <MarkdownRenderer content={fortune.horoscope} />
+                </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
